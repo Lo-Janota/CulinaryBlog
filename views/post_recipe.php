@@ -4,22 +4,28 @@
 <head>
     <meta charset="UTF-8">
     <title>Postar Receita</title>
+    <link rel="stylesheet" href="../assets/css/styles.css">
 </head>
 
 <body>
-    <h1>Postar Nova Receita</h1>
+    <?php include '../partials/header.php'; ?>
 
-    <form action="../post_handler.php" method="post" enctype="multipart/form-data">
-        <label for="title">Título</label>
-        <input type="text" name="title" required>
+    <div class="post-container">
+        <h1>Postar Nova Receita</h1>
 
-        <label for="content">Conteúdo</label>
-        <textarea name="content" required></textarea>
+        <form action="../post_handler.php" method="post" enctype="multipart/form-data">
+            <label for="title">Título</label>
+            <input type="text" name="title" required>
 
-        <label for="image">Imagem</label>
-        <input type="file" name="image" required>
+            <label for="content">Conteúdo</label>
+            <textarea name="content" required></textarea>
 
-        <button type="submit">Publicar Receita</button>
-    </form>
+            <label for="image">Imagem</label>
+            <input type="file" name="image" required>
+
+            <button type="submit">Publicar Receita</button>
+        </form>
+    </div>
 </body>
+
 </html>

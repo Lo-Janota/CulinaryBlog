@@ -21,27 +21,33 @@ if (!isset($_SESSION['posts'])) {
 
     <h1>Receitas Recentes</h1>
 
-    <?php foreach ($_SESSION['posts'] as $index => $post): ?>
+    <div class="posts-container">
+
+    <?php
+    // Inverte a ordem dos posts para mostrar o mais recente primeiro
+    $postsReversed = array_reverse($_SESSION['posts']);
+    
+    foreach ($postsReversed as $index => $post): ?>
         <div class="post">
-            <h2><?= $post->title ?></h2>
-            <img src="assets/images/<?= $post->image ?>" alt="<?= $post->title ?>" />
-            <p><?= $post->content ?></p>
-            <p>Avaliação média: <?= $post->getAverageRating() ?></p>
+            <h2><?= htmlspecialchars($post->title) ?></h2>
+            <img src="assets/images/<?= htmlspecialchars($post->image) ?>" alt="<?= htmlspecialchars($post->title) ?>" />
+            <p><?= nl2br(htmlspecialchars($post->content)) ?></p>
+            <p>Avaliação média: <?= htmlspecialchars($post->getAverageRating()) ?></p>
 
             <h3>Comentários</h3>
             <?php foreach ($post->comments as $comment): ?>
-                <p><strong><?= $comment->user ?>:</strong> <?= $comment->text ?></p>
+                <p><strong><?= htmlspecialchars($comment->user) ?>:</strong> <?= htmlspecialchars($comment->text) ?></p>
             <?php endforeach; ?>
 
             <form action="comment_handler.php" method="post">
-                <input type="hidden" name="post_index" value="<?= $index ?>">
-                <input type="text" name="user" placeholder="Seu nome">
-                <textarea name="comment" placeholder="Seu comentário"></textarea>
+                <input type="hidden" name="post_index" value="<?= htmlspecialchars($index) ?>">
+                <input type="text" name="user" placeholder="Seu nome" required>
+                <textarea name="comment" placeholder="Seu comentário" required></textarea>
                 <button type="submit">Comentar</button>
             </form>
         </div>
     <?php endforeach; ?>
-
+    
     <?php include 'partials/footer.php'; ?>
 </body>
 </html>
