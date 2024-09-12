@@ -30,7 +30,7 @@ if (!isset($_SESSION['posts'])) {
             <div class="post">
                 <h2><?= htmlspecialchars($post->title) ?></h2>
 
-                <!-- Botões de Editar e Deletar -->
+                <!-- Botões de Editar, Deletar e Compartilhar -->
                 <span class="float-right">
                     <!-- Botão de Edição -->
                     <a href="edit_post.php?post_index=<?= $index ?>" class="btn btn-sm btn-primary">
@@ -44,6 +44,11 @@ if (!isset($_SESSION['posts'])) {
                             <i class="bi bi-trash fs-4"></i> <!-- Ícone de lixeira -->
                         </button>
                     </form>
+
+                    <!-- Botão de Compartilhar -->
+            <button class="btn btn-sm btn-success" onclick="copyToClipboard('<?= 'http://localhost:3000/' . $index ?>')">
+                <i class="bi bi-share fs-4"></i> <!-- Ícone de Compartilhamento -->
+            </button>
                 </span>
                 </h2>
 
@@ -115,5 +120,19 @@ if (!isset($_SESSION['posts'])) {
         <?php endforeach; ?>
     </div>
 </body>
+<script>
+function copyToClipboard(text) {
+    // Cria um elemento temporário para copiar o texto
+    const tempInput = document.createElement('input');
+    document.body.appendChild(tempInput);
+    tempInput.value = text;
+    tempInput.select();
+    document.execCommand('copy');
+    document.body.removeChild(tempInput);
+    
+    // Alerta de sucesso
+    alert('Link copiado para a área de transferência!');
+}
+</script>
 
 </html>
