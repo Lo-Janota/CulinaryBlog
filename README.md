@@ -21,9 +21,7 @@ Funcionalidades
     Links: Geração de URLs únicas para cada receita, permitindo o compartilhamento nas redes sociais e por e-mail.
 
 # Tecnologias Utilizadas
-    FrontEnd: HTML, CSS, JavaScript (opcionalmente frameworks como Bootstrap para design responsivo).
+    FrontEnd: HTML, CSS, JavaScript
     BackEnd: PHP para processamento de formulários e manipulação de dados.
-    Banco de Dados: MySQL ou MariaDB para armazenamento de receitas, imagens, avaliações e comentários.
-    Segurança: Validação de entrada, proteção contra upload de arquivos maliciosos.
 
 # Este projeto está licenciado sob a Licença MIT.
