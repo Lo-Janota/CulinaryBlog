@@ -2,14 +2,14 @@
 class Post {
     public $title;
     public $content;
-    public $image;
+    public $images = []; // Agora armazena múltiplas imagens
     public $ratings = [];
     public $comments = [];
 
-    public function __construct($title, $content, $image) {
+    public function __construct($title, $content, $images) {
         $this->title = $title;
         $this->content = $content;
-        $this->image = $image;
+        $this->images = $images; // Armazena todas as imagens
     }
 
     public function addRating($rating) {

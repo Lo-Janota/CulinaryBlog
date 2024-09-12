@@ -160,3 +160,16 @@ footer {
     padding: 1rem;
     margin-top: 2rem;
 }
+
+/* Personalização do carrossel */
+.carousel-inner img {
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Ajusta os ícones dos controles de navegação */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: #ff5722;
+    border-radius: 50%;
+}

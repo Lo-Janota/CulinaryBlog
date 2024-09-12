@@ -15,16 +15,17 @@
 
         <form action="../post_handler.php" method="post" enctype="multipart/form-data">
             <label for="title">Título</label>
-            <input type="text" name="title" required>
+            <input type="text" name="title" id="title" required>
 
             <label for="content">Conteúdo</label>
-            <textarea name="content" required></textarea>
+            <textarea name="content" id="content" required></textarea>
 
-            <label for="image">Imagem</label>
-            <input type="file" name="image" required>
+            <label for="images">Imagens (selecione várias)</label>
+            <input type="file" name="images[]" id="images" multiple required>
 
             <button type="submit">Publicar Receita</button>
         </form>
+
     </div>
 </body>
 
