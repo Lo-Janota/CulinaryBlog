@@ -30,6 +30,23 @@ if (!isset($_SESSION['posts'])) {
             <div class="post">
                 <h2><?= htmlspecialchars($post->title) ?></h2>
 
+                <!-- Botões de Editar e Deletar -->
+                <span class="float-right">
+                    <!-- Botão de Edição -->
+                    <a href="edit_post.php?post_index=<?= $index ?>" class="btn btn-sm btn-primary">
+                        <i class="bi bi-pencil fs-4"></i> <!-- Ícone de lápis -->
+                    </a>
+
+                    <!-- Botão de Exclusão -->
+                    <form action="delete_post.php" method="post" style="display:inline;">
+                        <input type="hidden" name="post_index" value="<?= $index ?>">
+                        <button type="submit" class="btn btn-sm btn-danger">
+                            <i class="bi bi-trash fs-4"></i> <!-- Ícone de lixeira -->
+                        </button>
+                    </form>
+                </span>
+                </h2>
+
                 <!-- Carrossel de imagens Bootstrap -->
                 <div id="carousel-<?= $index ?>" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner">
