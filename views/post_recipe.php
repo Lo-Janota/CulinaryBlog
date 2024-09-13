@@ -13,7 +13,7 @@
     <div class="post-container">
         <h1>Postar Nova Receita</h1>
 
-        <form action="../post_handler.php" method="post" enctype="multipart/form-data">
+        <form action="../handler/post_handler.php" method="post" enctype="multipart/form-data">
             <label for="title">Título</label>
             <input type="text" name="title" id="title" required>
 

@@ -15,6 +15,7 @@ if (!isset($_SESSION['posts'])) {
     <meta charset="UTF-8">
     <title>Blog de Receitas</title>
     <link rel="stylesheet" href="assets/css/styles.css">
+    <script src="assets/js/script.js"></script>
 </head>
 
 <body>
@@ -33,12 +34,12 @@ if (!isset($_SESSION['posts'])) {
                 <!-- Botões de Editar, Deletar e Compartilhar -->
                 <span class="float-right">
                     <!-- Botão de Edição -->
-                    <a href="edit_post.php?post_index=<?= $index ?>" class="btn btn-sm btn-primary">
+                    <a href="handler/edit_post.php?post_index=<?= $index ?>" class="btn btn-sm btn-primary">
                         <i class="bi bi-pencil fs-4"></i> <!-- Ícone de lápis -->
                     </a>
 
                     <!-- Botão de Exclusão -->
-                    <form action="delete_post.php" method="post" style="display:inline;">
+                    <form action="handler/delete_post.php" method="post" style="display:inline;">
                         <input type="hidden" name="post_index" value="<?= $index ?>">
                         <button type="submit" class="btn btn-sm btn-danger">
                             <i class="bi bi-trash fs-4"></i> <!-- Ícone de lixeira -->
@@ -89,7 +90,7 @@ if (!isset($_SESSION['posts'])) {
                 </div>
 
                 <!-- Formulário de avaliação -->
-                <form action="rating_handler.php" method="post">
+                <form action="../handler/rating_handler.php" method="post">
                     <label for="rating">Avalie:</label>
                     <select name="rating" id="rating" required>
                         <option value="1">1 Estrela</option>
@@ -109,7 +110,7 @@ if (!isset($_SESSION['posts'])) {
                         <p><strong><?= htmlspecialchars($comment->user) ?>:</strong> <?= htmlspecialchars($comment->text) ?></p>
                     <?php endforeach; ?>
 
-                    <form action="comment_handler.php" method="post">
+                    <form action="../handler/comment_handler.php" method="post">
                         <input type="hidden" name="post_index" value="<?= $index ?>">
                         <input type="text" name="user" placeholder="Seu nome" required>
                         <textarea name="comment" placeholder="Seu comentário" required></textarea>
@@ -120,8 +121,10 @@ if (!isset($_SESSION['posts'])) {
         <?php endforeach; ?>
     </div>
 </body>
+
+<!--
 <script>
-function copyToClipboard(text) {
+    function copyToClipboard(text) {
     // Cria um elemento temporário para copiar o texto
     const tempInput = document.createElement('input');
     document.body.appendChild(tempInput);
@@ -134,5 +137,5 @@ function copyToClipboard(text) {
     alert('Link copiado para a área de transferência!');
 }
 </script>
-
+-->
 </html>

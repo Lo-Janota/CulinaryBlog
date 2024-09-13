@@ -16,7 +16,7 @@ class Post {
         $this->ratings[] = $rating;
     }
 
-    public function addComment($comment) {
+    public function addComment(Comment $comment) {
         $this->comments[] = $comment;
     }
 
