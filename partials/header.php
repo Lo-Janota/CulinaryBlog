@@ -11,7 +11,7 @@
         <nav>
             <ul>
                 <li><a href="/index.php">Início</a></li>
-                <li><a href="views/post_recipe.php">Postar Receita</a></li>
+                <li><a href="post_recipe.php">Postar Receita</a></li>
             </ul>
         </nav>
     </header>
