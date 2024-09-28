@@ -1,4 +1,11 @@
 # Blog de Receitas Culinárias
+
+## Projeto feito pelos alunos
+    LORENZO DE ANDRADE SOUZA JANOTA – 838633
+    CAIO NEVES MAITAN – 837704
+    ENZO BOTOLOTO FLOR – 838500
+    JOÃO VITOR BERNARDES VIEIRA - 837901
+
 ## Descrição
 
 O Blog de Receitas Culinárias é uma plataforma web onde usuários podem compartilhar suas receitas favoritas, incluindo imagens e instruções detalhadas. Os usuários podem interagir com as receitas através de avaliações e comentários, e também têm a opção de compartilhar receitas em redes sociais.
@@ -24,4 +31,4 @@ Funcionalidades
     FrontEnd: HTML, CSS, JavaScript
     BackEnd: PHP para processamento de formulários e manipulação de dados.
 
-# Este projeto está licenciado sob a Licença MIT.
+
