@@ -121,21 +121,4 @@ if (!isset($_SESSION['posts'])) {
         <?php endforeach; ?>
     </div>
 </body>
-
-<!--
-<script>
-    function copyToClipboard(text) {
-    // Cria um elemento temporário para copiar o texto
-    const tempInput = document.createElement('input');
-    document.body.appendChild(tempInput);
-    tempInput.value = text;
-    tempInput.select();
-    document.execCommand('copy');
-    document.body.removeChild(tempInput);
-    
-    // Alerta de sucesso
-    alert('Link copiado para a área de transferência!');
-}
-</script>
--->
 </html>
