@@ -1,4 +1,5 @@
 <?php
+
 class Comment {
     public $user;
     public $text;

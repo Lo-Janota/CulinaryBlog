@@ -1,21 +1,23 @@
 <?php
+require_once '../db_connection.php';
 
-require_once '../classes/PostHandler.php';
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['rating'], $_POST['post_id'])) {
+    $rating = (int)$_POST['rating'];
+    $postId = (int)$_POST['post_id'];
 
-// Verifica se a requisição é do tipo POST
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $postIndex = $_POST['post_index'];  // Obtém o índice do post correto
-    $rating = (int) $_POST['rating'];   // Converte a avaliação para inteiro
-
-    // Instancia a classe PostHandler
-    $postHandler = new PostHandler();
-
-    // Adiciona a avaliação ao post
     try {
-        $postHandler->addRating($postIndex, $rating);
-        $postHandler->redirect('../index.php');  // Redireciona de volta para a página principal
+        // Inserir ou atualizar a avaliação
+        $sql = "INSERT INTO ratings (post_id, rating) VALUES (?, ?) 
+                ON DUPLICATE KEY UPDATE rating = VALUES(rating)";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("ii", $postId, $rating);
+        $stmt->execute();
+        $stmt->close();
+
+        header("Location: ../index.php");
+        exit();
     } catch (Exception $e) {
-        echo 'Erro: ' . $e->getMessage();
+        echo "Erro ao salvar a avaliação: " . $e->getMessage();
     }
 }
 ?>

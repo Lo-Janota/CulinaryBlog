@@ -1,15 +1,20 @@
 <?php
+
 class Post {
+    public $id;
     public $title;
     public $content;
     public $images = [];
     public $ratings = [];
     public $comments = [];
+    public $averageRating;
 
-    public function __construct($title, $content, $images) {
+    public function __construct($title, $content, $images, $id = null) {
+        $this->id = $id;
         $this->title = $title;
         $this->content = $content;
         $this->images = $images;
+        $this->averageRating = 0;
     }
 
     public function addRating($rating) {

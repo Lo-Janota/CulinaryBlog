@@ -1,23 +1,41 @@
 <?php
 
-require_once '../classes/PostHandler.php';
+require_once '../db_connection.php';
 
-
-// Verifica se a requisição é do tipo POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $title = $_POST['title'];
     $content = $_POST['content'];
+    $images = [];
 
-    // Instancia a classe PostHandler
-    $postHandler = new PostHandler();
+    if (!empty($_FILES['images']['name'][0])) {
+        foreach ($_FILES['images']['tmp_name'] as $key => $tmpName) {
+            $imageName = basename($_FILES['images']['name'][$key]);
+            $targetFile = '../assets/images/' . $imageName;
+            if (move_uploaded_file($tmpName, $targetFile)) {
+                $images[] = $imageName;
+            }
+        }
+    }
 
-    // Lida com o upload das imagens
-    $images = $postHandler->handleImages($_FILES['images']);
+    try {
+        $stmt = $conn->prepare("INSERT INTO posts (title, content) VALUES (?, ?)");
+        $stmt->bind_param("ss", $title, $content);
+        $stmt->execute();
+        $postId = $stmt->insert_id;
 
-    // Cria um novo post
-    $postHandler->createPost($title, $content, $images);
+        if (!empty($images)) {
+            foreach ($images as $imagePath) {
+                $stmt = $conn->prepare("INSERT INTO images (post_id, image_path) VALUES (?, ?)");
+                $stmt->bind_param("is", $postId, $imagePath);
+                $stmt->execute();
+            }
+        }
 
-    // Redireciona de volta para a página principal
-    $postHandler->redirect('../index.php');
+        $stmt->close();
+        $conn->close();
+        header('Location: ../index.php');
+    } catch (Exception $e) {
+        echo "Erro ao salvar a receita: " . $e->getMessage();
+    }
 }
 ?>
