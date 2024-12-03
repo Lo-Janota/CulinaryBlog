@@ -30,5 +30,37 @@ class PostHandler {
         }
         return $posts;
     }
+
+    public function editPost($postId, $title, $content, $images = []) {
+        global $conn;
+
+        // Atualizar título e conteúdo do post
+        $sqlUpdatePost = "UPDATE posts SET title = ?, content = ? WHERE id = ?";
+        $stmtPost = $conn->prepare($sqlUpdatePost);
+        $stmtPost->bind_param("ssi", $title, $content, $postId);
+        $stmtPost->execute();
+
+        // Substituir imagens, se fornecidas
+        if (!empty($images)) {
+            // Deletar imagens existentes
+            $sqlDeleteImages = "DELETE FROM images WHERE post_id = ?";
+            $stmtDeleteImages = $conn->prepare($sqlDeleteImages);
+            $stmtDeleteImages->bind_param("i", $postId);
+            $stmtDeleteImages->execute();
+
+            // Inserir novas imagens
+            foreach ($images as $imagePath) {
+                $sqlInsertImage = "INSERT INTO images (post_id, image_path) VALUES (?, ?)";
+                $stmtInsertImage = $conn->prepare($sqlInsertImage);
+                $stmtInsertImage->bind_param("is", $postId, $imagePath);
+                $stmtInsertImage->execute();
+            }
+        }
+    }
+
+    public function redirect($url) {
+        header("Location: $url");
+        exit();
+    }
 }
 ?>
