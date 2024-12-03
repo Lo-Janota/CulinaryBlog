@@ -34,18 +34,18 @@ Funcionalidades
 
 # SQL
 
-CREATE DATABASE blog;
+ CREATE DATABASE blog;
 
-CREATE TABLE posts (
+ CREATE TABLE posts (
     id INT(11) NOT NULL AUTO_INCREMENT,
     title VARCHAR(255) NOT NULL,
     content TEXT NOT NULL,
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id)
-);
+ );
 
 
-CREATE TABLE comments (
+ CREATE TABLE comments (
     id INT(11) NOT NULL AUTO_INCREMENT,
     post_id INT(11) NOT NULL,
     user VARCHAR(100) NOT NULL,
@@ -53,26 +53,26 @@ CREATE TABLE comments (
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id),
     FOREIGN KEY (post_id) REFERENCES posts(id) ON DELETE CASCADE
-);
+ );
 
 
-CREATE TABLE images (
+ CREATE TABLE images (
     id INT(11) NOT NULL AUTO_INCREMENT,
     post_id INT(11) NOT NULL,
     image_path VARCHAR(255) NOT NULL,
     PRIMARY KEY (id),
     FOREIGN KEY (post_id) REFERENCES posts(id) ON DELETE CASCADE
-);
+ );
 
 
 
-CREATE TABLE ratings (
+ CREATE TABLE ratings (
     id INT(11) NOT NULL AUTO_INCREMENT,
     post_id INT(11) NOT NULL,
     rating INT(11),
     PRIMARY KEY (id),
     FOREIGN KEY (post_id) REFERENCES posts(id) ON DELETE CASCADE
-);
+ );
 
 
 
