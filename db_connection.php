@@ -16,18 +16,34 @@ if ($conn->connect_error) {
 
 // Verifica se o banco de dados existe
 $db_check = $conn->query("SHOW DATABASES LIKE '$dbname'");
-if ($db_check->num_rows == 0) {
-    // Se o banco não existir, cria o banco de dados usando o arquivo blog.sql
-    $sqlFile = __DIR__ . '/blog.sql'; // Caminho para o arquivo SQL
-    $sql = file_get_contents($sqlFile);
 
-    if ($conn->multi_query($sql)) {
-        echo "Banco de dados 'blog' criado com sucesso!";
+if ($db_check->num_rows == 0) {
+    // Se o banco de dados não existir, cria o banco
+    $createDbQuery = "CREATE DATABASE `$dbname`";
+    if ($conn->query($createDbQuery) === TRUE) {
+        echo "Banco de dados 'blog' criado com sucesso! DE F5 PARA FUNCIONAR<br>";
+
+        // Agora, seleciona o banco de dados recém-criado
+        $conn->select_db($dbname);
+
+        // Caminho para o arquivo SQL
+        $sqlFile = __DIR__ . '/blog.sql'; // Certifique-se de que o arquivo blog.sql esteja no mesmo diretório
+
+        // Lê o conteúdo do arquivo SQL
+        $sql = file_get_contents($sqlFile);
+
+        // Executa as queries do arquivo SQL
+        if ($conn->multi_query($sql)) {
+            echo "Tabelas criadas com sucesso!";
+        } else {
+            die("Erro ao executar o SQL: " . $conn->error);
+        }
     } else {
         die("Erro ao criar o banco de dados: " . $conn->error);
     }
+} else {
+    // Se o banco de dados já existir, apenas seleciona
+    $conn->select_db($dbname);
+   
 }
-
-// Seleciona o banco de dados
-$conn->select_db($dbname);
 ?>
