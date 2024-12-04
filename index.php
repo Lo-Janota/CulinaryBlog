@@ -48,12 +48,14 @@ try {
 
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <title>Blog de Receitas</title>
     <link rel="stylesheet" href="assets/css/styles.css">
     <script src="assets/js/script.js"></script>
 </head>
+
 <body>
     <?php include 'partials/header.php'; ?>
 
@@ -102,6 +104,14 @@ try {
                         </button>
                     </form>
 
+                    <!-- Botão de editar -->
+                    <form action="handler/edit_post.php" method="get" style="display: inline;">
+                        <input type="hidden" name="post_id" value="<?= $post->id ?>">
+                        <button type="submit" class="btn btn-sm btn-warning">
+                            <i class="bi bi-pencil"></i> Editar
+                        </button>
+                    </form>
+
                     <!-- Formulário de avaliação -->
                     <form action="handler/rating_handler.php" method="post">
                         <label for="rating">Avalie:</label>
@@ -136,4 +146,5 @@ try {
         <?php endif; ?>
     </div>
 </body>
+
 </html>

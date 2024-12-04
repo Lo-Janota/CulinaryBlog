@@ -21,7 +21,11 @@ if ($db_check->num_rows == 0) {
     // Se o banco de dados não existir, cria o banco
     $createDbQuery = "CREATE DATABASE `$dbname`";
     if ($conn->query($createDbQuery) === TRUE) {
-        echo "Banco de dados 'blog' criado com sucesso! DE F5 PARA FUNCIONAR<br>";
+        // Exibe um alerta e recarrega a página após o clique
+        echo "<script>
+                alert('BANCO DE DADOS \"$dbname\" CRIADO COM SUCESSO!');
+                window.location.reload(); // Recarrega a página
+              </script>";
 
         // Agora, seleciona o banco de dados recém-criado
         $conn->select_db($dbname);
@@ -34,7 +38,7 @@ if ($db_check->num_rows == 0) {
 
         // Executa as queries do arquivo SQL
         if ($conn->multi_query($sql)) {
-            echo "Tabelas criadas com sucesso!";
+            // As tabelas foram criadas com sucesso
         } else {
             die("Erro ao executar o SQL: " . $conn->error);
         }
@@ -44,6 +48,5 @@ if ($db_check->num_rows == 0) {
 } else {
     // Se o banco de dados já existir, apenas seleciona
     $conn->select_db($dbname);
-   
 }
 ?>

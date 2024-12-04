@@ -1,6 +1,7 @@
 <?php
 
-require_once '../classes/PostHandler.php';
+require_once '../classes/PostHandler.php';  // Caminho correto para a classe PostHandler
+require_once '../db_connection.php';  // Inclua o arquivo de conexão com o banco de dados
 
 $postHandler = new PostHandler();
 
@@ -8,7 +9,10 @@ if (!isset($_GET['post_id'])) {
     $postHandler->redirect('../index.php');
 }
 
-$postId = (int)$_GET['post_id'];
+$postId = (int)$_GET['post_id'];  // Converte o ID do post para inteiro
+
+// Adicionando var_dump para verificar se o postId está correto
+var_dump($postId);  // Verifique se o valor de postId está correto
 
 // Consulta para obter os dados do post
 global $conn;
